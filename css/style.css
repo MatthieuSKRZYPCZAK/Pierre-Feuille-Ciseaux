@@ -1,0 +1,302 @@
+body {
+    height: 100vh;
+    background-image: url("../images/wood.jpg") ;
+    background-size: cover;
+    max-width: 100%;
+    position: relative;    
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+    max-height: 100%;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 100vh;
+    position: relative;
+}
+
+.title-logo {
+    position: fixed;
+    width: 80rem;
+}
+
+#startGame {
+  display: none;
+}
+
+.start-logo {
+  position: fixed;
+  width: 20%;
+  top: 50%;
+  left: 40%;
+}
+
+.start-logo:hover {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+#popup-sound {
+    width: 800px;
+    height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-image: url("../images/popup.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    align-content: center;
+    z-index: 1337;
+    position: fixed;
+    bottom: 0;
+    /* display: none; */
+}
+
+.popup-sound__title  {
+  width: 30rem;
+  height: 7rem;
+  z-index: 1;
+}
+
+#popup-sound__withAndWithout {
+  max-width: 360px;
+  display: flex;
+  z-index: 1;
+}
+
+.popup-sound__with {
+  width: 90%;
+  cursor: pointer;
+
+}
+.popup-sound__without {
+  width: 90%;
+  cursor: pointer;
+}
+
+#scissors:hover, #paper:hover, #rock:hover{
+  border: 5px solid green;
+  cursor: pointer;
+}
+
+.popup-sound__with:hover, .popup-sound__without:hover, .game__me__scissors:hover, .game__me__paper:hover, .game__me__rock:hover, .game__computer__moai:hover{
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.game__computer__moai {
+  cursor: pointer;
+}
+
+.popup-sound__title {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+#game {
+  display: none;
+}
+
+.game__top {
+  display: flex;
+  align-content: center;
+}
+
+#game__top__letsplay {
+  /* display: none; */
+}
+
+#game__top__win {
+  display: none;
+}
+
+#game__top__loose {
+  display: none;
+}
+
+#game__top__equality {
+  display: none;
+}
+
+.game__top__letsplay {
+  position: fixed;
+  width: 20%;
+  top: 30%;
+  left: 40%;
+
+}
+
+.game__top__win {
+  position: fixed;
+  width: 20%;
+  top: 30%;
+  left: 40%;
+
+}
+
+.game__top__loose {
+  position: fixed;
+  width: 20%;
+  top: 30%;
+  left: 40%;
+
+}
+
+.game__top__equality {
+  position: fixed;
+  width: 20%;
+  top: 30%;
+  left: 40%;
+
+}
+
+.game__player {
+  display: flex;
+}
+
+.game__me__moai {
+  position: fixed;
+  width: 20%;
+  bottom: 0;
+  /* display: none; */
+}
+
+.game__computer__moai {
+  position: fixed;
+  width: 20%;
+  bottom: 0;
+  right: 0;
+}
+
+.game__me__shifumi {
+  position: fixed;
+  bottom: 10%;
+  left: 35%;
+}
+
+.game__computer__avatar {
+  position: fixed;
+  bottom: 22%;
+  left: 62%;
+}
+
+#rock {
+  border: 5px solid black;
+  border-radius: 25%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+#paper {
+  border: 5px solid black;
+  border-radius: 25%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+#scissors {
+  border: 5px solid black;
+  border-radius: 25%;
+  padding: 1rem;
+}
+
+#game__computer__result {
+  border: 5px solid black;
+  border-radius: 25%;
+  padding: 1rem;
+  display: none;
+}
+
+.game__computer__result {
+  width: 8rem;
+}
+
+#game__computer__rock {
+  display: none;
+}
+
+#game__computer__paper {
+  display: none;
+}
+
+#game__computer__scissors {
+  display: none;
+}
+
+
+
+
+.game__me__rock {
+  width: 5rem;
+}
+
+.game__me__paper {
+  width: 5rem;
+}
+
+.game__me__scissors {
+  width: 5rem;
+}
+
+.soundControl {
+  display: flex;
+
+}
+
+#soundOn {
+  display: none;
+  cursor: pointer;
+}
+
+.soundOn {
+  position: fixed;
+  width: 3%;
+  bottom: 1%;
+  left: 40%;
+}
+
+#soundOff {
+  display: none;
+  cursor: pointer;
+}
+
+.soundOff {
+  position: fixed;
+  width: 3%;
+  bottom: 1%;
+  left: 40%;
+}
+
+#music {
+  cursor: pointer;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+    
+      20%, 80% {
+        transform: translate3d(2px, 0, 0);
+      }
+    
+      30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+      }
+    
+      40%, 60% {
+        transform: translate3d(4px, 0, 0);
+      }
+}

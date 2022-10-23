@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Le jeux du Shifumi</title>
+
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" href="images/game.png" type="image/icon type">
+
+    </head>
+
+    <body>
+        <header>
+            <img class="title-logo" src="images/titre.png" alt="Pierre Feuille Ciseaux Logo">
+        </header>
+        <main>
+            <div id="popup-sound">
+                <div  id= "popup-sound__title">
+                    <img class="popup-sound__title" src="images/activesound.png" alt="Voulez vous du son">
+                </div>
+                <div id="popup-sound__withAndWithout">
+                <div id="popup-sound__with">
+                     <img class="popup-sound__with" src="images/with.png" alt="Avec logo">
+                </div>
+                <div id="popup-sound__without">
+                    <img class="popup-sound__without" src="images/without.png" alt="Sans logo">
+                </div>                    
+            </div>
+        </main>
+        <div id="game">
+            <section class="game__header">
+                <div class="game__top">
+                    <img class="game__top__letsplay" id="game__top__letsplay" src="images/letsplay.png" alt="lets play logo">
+                    <img class="game__top__loose" id="game__top__loose" src="images/loose.png" alt="loose logo">
+                    <img class="game__top__win" id="game__top__win" src="images/win.png" alt="win logo">
+                    <img class="game__top__equality" id="game__top__equality" src="images/equality.png" alt="Equality logo">
+                </div>
+                <div class="game__player">
+                    <div class="game__me">
+                        <div class="game__me__avatar">
+                            <img class="game__me__moai" src="images/moai-me.png" alt="Moai logo">
+                        </div>
+                        <div class="game__me__shifumi">
+                            <div id="rock">
+                                <img class="game__me__rock" src="images/rock.png" alt="Rock">
+                            </div>
+                            <div id="paper">
+                                <img class="game__me__paper" src="images/paper.png" alt="Paper">
+                            </div>
+                            <div id="scissors">
+                                <img class="game__me__scissors" src="images/scissors.png" alt="Scissors">
+                            </div>                     
+                        </div>
+                    </div>
+                    <div class="game__computer">
+                        <div class="game__computer__shifumi" id="game__computer__moai">
+                            <img class="game__computer__moai" src="images/moai.png" alt="Moai avatar">
+                        </div>
+                        <div class="game__computer__avatar">
+                            <div id="game__computer__result">
+                                <img id="game__computer__rock" src="images/rock.png" alt="Rock">
+                                <img id="game__computer__paper" src="images/paper.png" alt="Paper">
+                                <img id="game__computer__scissors" src="images/scissors.png" alt="Scissors">                                                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <section>
+            <div class="soundControl">
+                <div id="soundOn">
+                    <img  class="soundOn" src="images/soundon.png" alt="icon sound on">
+                </div>
+                <div id="soundOff">
+                    <img  class="soundOff" src="images/soundoff.png" alt="icon sound off">
+                </div>
+
+            </div>
+        </div>
+        <div id="startGame">
+            <img id="music" class="start-logo" src="images/start.png" alt="Start Buton">
+        </div>
+        <script defer src="js/games.js"></script>
+    </body>
+
+</html>
