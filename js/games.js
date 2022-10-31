@@ -1,9 +1,9 @@
 const app = {
     // DECLARATION DES VARIABLES
-    music: new Audio('https://matthieuskrzypczak.fr/sound/jungle.mp3'),                     // Variable contenant la musique jungle
-    musicStone: new Audio('https://matthieuskrzypczak.fr/sound/stone.mp3'),
-    musicPaper: new Audio('https://matthieuskrzypczak.fr/sound/paper.mp3'),
-    musicScissors: new Audio('https://matthieuskrzypczak.fr/sound/scissors.mp3'),
+    music: new Audio('https://matthieuskrzypczak.fr/shifumi/sound/jungle.mp3'),                     // Variable contenant la musique jungle
+    musicStone: new Audio('https://matthieuskrzypczak.fr/shifumi/sound/stone.mp3'),
+    musicPaper: new Audio('https://matthieuskrzypczak.fr/shifumi/sound/paper.mp3'),
+    musicScissors: new Audio('https://matthieuskrzypczak.fr/shifumi/sound/scissors.mp3'),
     eventRock: document.getElementById('rock'),
     eventPaper: document.getElementById('paper'),
     eventScissors: document.getElementById('scissors'),
