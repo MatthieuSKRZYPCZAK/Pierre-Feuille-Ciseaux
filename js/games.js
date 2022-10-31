@@ -1,369 +1,361 @@
-const music = new Audio('https://matthieuskrzypczak.fr/sound/jungle.mp3');                     // Variable contenant la musique jungle
-const musicStone = new Audio('https://matthieuskrzypczak.fr/sound/stone.mp3')
-const musicPaper = new Audio('https://matthieuskrzypczak.fr/sound/paper.mp3');
-const musicScissors = new Audio('https://matthieuskrzypczak.fr/sound/scissors.mp3');
-const musicWin = new Audio('https://matthieuskrzypczak.fr/sound/win.mp3');
-const musicLoose = new Audio('https://matthieuskrzypczak.fr/sound/loose.mp3');
-const musicEquality = new Audio('https://matthieuskrzypczak.fr/sound/equality.mp3');
-const eventRock = document.getElementById('rock');
-const eventPaper = document.getElementById('paper');
-const eventScissors = document.getElementById('scissors');
-const computerRock = document.getElementById('game__computer__rock');
-const computerPaper = document.getElementById('game__computer__paper');
-const computerScissors = document.getElementById('game__computer__scissors');
-const soundOn = document.getElementById('soundOn');                 
-const soundOff = document.getElementById('soundOff');
-const equalityResult = document.getElementById('game__top__equality');
-const winResult = document.getElementById('game__top__win');
-const looseResult = document.getElementById('game__top__loose');
-const letsplay = document.getElementById('game__top__letsplay');
-const computerResult = document.getElementById('game__computer__result');
-const eventMoai = document.getElementById('game__computer__moai');
-const rockPaperScissors = [
-    "rock",
-    "paper",
-    "scissors"
-];               
-let sound = "tagada";
-let playerChoise = "none";
-let result = "none";
+const app = {
+    // DECLARATION DES VARIABLES
+    music: new Audio('https://matthieuskrzypczak.fr/sound/jungle.mp3'),                     // Variable contenant la musique jungle
+    musicStone: new Audio('https://matthieuskrzypczak.fr/sound/stone.mp3'),
+    musicPaper: new Audio('https://matthieuskrzypczak.fr/sound/paper.mp3'),
+    musicScissors: new Audio('https://matthieuskrzypczak.fr/sound/scissors.mp3'),
+    eventRock: document.getElementById('rock'),
+    eventPaper: document.getElementById('paper'),
+    eventScissors: document.getElementById('scissors'),
+    computerRock: document.getElementById('game__computer__rock'),
+    computerPaper: document.getElementById('game__computer__paper'),
+    computerScissors: document.getElementById('game__computer__scissors'),
+    soundOn: document.getElementById('soundOn'),                 
+    soundOff: document.getElementById('soundOff'),
+    equalityResult: document.getElementById('game__top__equality'),
+    winResult: document.getElementById('game__top__win'),
+    looseResult: document.getElementById('game__top__loose'),
+    letsplay: document.getElementById('game__top__letsplay'),
+    computerResult: document.getElementById('game__computer__result'),
+    eventMoai: document.getElementById('game__computer__moai'),
+    rockPaperScissors: [
+        'rock',
+        'paper',
+        'scissors'
+    ],   
+    sound: "tagada",
+    playerChoise: "none",
+    result: "none",  
+    
+    //Lance les fonctions utiles au lancement du jeux
+    init: function() {
+        app.eventDisplaySound();
+        app.clickStart();
+        app.playWithSound();
+        app.gamePlayer();
+    },
 
-// Adversaire
-function computer() {
-    const rand = randomPFC();
-    computerResult.style.display = "block";
-    if (rand === "rock") {
-        createRock();
+    // Enlève le bouton Start et fait apparaitre le plateau de jeux
+    startGame: function() {
+        const startButon = document.getElementById('startGame');
+        startButon.style.display = "none";
+        const openGame = document.getElementById('game');
+        openGame.style.display = "block";
+        app.eventMoaiMusic();
+    },
+
+    // Fonction d'évènement sur le bouton Start
+    clickStart: function() {
+        const eventStart = document.getElementById('music');
+        eventStart.addEventListener('click', app.handleClickStart);
+    },
+
+    // Fonction qui est appelé au click du bouton start, Active ou non la musique
+    handleClickStart: function() {
+        if (app.sound === "ok"){
+            app.startGame();
+        }
+        app.startGame();    
+    },
+
+    // Fonction qui enlève la fenêtre "popup" qui demande si on souhaite le son et fait apparaitre le bouton Start
+    startGameButon: function() {
+        const closePopupSound = document.getElementById('popup-sound');
+        closePopupSound.style.display = "none";
+        const startButon = document.getElementById('startGame');
+        startButon.style.display = "block";
+    },
+
+    // Génère l'action de l'adversaire Pierre/Feuille/Ciseaux
+    randomPFC: function() {
+        let randGame = app.rockPaperScissors[(Math.random() * app.rockPaperScissors.length) |0];
+        return randGame;
+    },
+
+    // Fonction d'évènement du popup qui demande si on souhaite le son
+    playWithSound: function() {
+        const eventWithSound = document.querySelector('.popup-sound__with');
+        const eventWithoutSound = document.querySelector('.popup-sound__without');
+        eventWithSound.addEventListener('click', app.handleClickWithSound);
+        eventWithoutSound.addEventListener('click', app.handleClickWithoutSound);
+    },
+
+    // Fonction qui est appelé au click si on souhaite le son
+    handleClickWithSound: function() {
+        app.sound = "ok";
+        app.startGameButon();
+        app.iconSound();
+    },
+
+    // Fonction qui est appelé au click si on ne souhaite pas le son
+    handleClickWithoutSound: function() {
+        app.sound = "no";
+        app.startGameButon();
+        app.iconNoSound();
+    },
+    // Display Sound
+    eventDisplaySound: function() {
+        app.soundOn.addEventListener('click', app.handleClickSoundOn);
+        app.soundOff.addEventListener('click', app.handleClickSoundOff);
+
+    },
+
+    handleClickSoundOn: function() {
+        if (app.sound === "ok") {
+            app.sound = "no";
+            app.iconNoSound();
+        } else if (app.sound != "ok") {
+        app.sound = "ok";
+        app.iconSound();  
+        }
+    },    
+
+
+    handleClickSoundOff: function() {
+        if (app.sound === "ok") {
+            app.sound = "no";
+            iconNoSound();
+        } else if (app.sound != "ok") {
+        app.sound = "ok";
+        app.iconSound();       
+        }
+    },
+
+    // Affiche l'icone son activé et enlève l'icone son désactivé
+    iconSound: function() {
+        app.soundOff.style.display = "none";
+        app.soundOn.style.display = "block";    
+    },
+
+    // Affiche l'icone son désactivé et enlève l'icone son activé
+    iconNoSound: function() {
+        app.soundOn.style.display = "none";
+        app.soundOff.style.display = "block";
+        app.music.pause();
+        app.music.currentTime = 0;
+    },
+
+    // Fonction d'évènement sur le choix du joueur
+    gamePlayer: function() {
+        app.eventRock.addEventListener('click', app.handleClickRock);
+        app.eventPaper.addEventListener('click', app.handleClickPaper);
+        app.eventScissors.addEventListener('click', app.handleClickScissors);
+    },
+    // Evenement Moai
+    eventMoaiMusic: function() {
+        app.eventMoai.addEventListener('click', app.handleEventMoai);
+    },
+
+    handleEventMoai: function() {
+        if (app.sound === "ok") {
+        app.music.play();
+        }
+    },   
+
+    handleClickRock: function() {
+        app.resetColor();
+        app.selectRock();
+    },
+
+    handleClickPaper: function() {
+        app.resetColor();
+        app.selectPaper();
+    },
+
+    handleClickScissors: function() {
+        app.resetColor();
+        app.selectScissors();
+    },
+
+    // ADVERSAIRE
+    computer: function () {
+        const rand = app.randomPFC();
+        app.computerResult.style.display = "block";
+        if (rand === "rock") {
+            app.createRock();
+        }
+        else if (rand === "paper") {
+            app.createPaper();
+        }
+        else if (rand === "scissors") {
+            app.createScissors();
+        }   
+        if (app.playerChoise === rand ) {
+            app.equalityDisplay();
+            app.result = "equality";
+        }
+        else if ((app.playerChoise === "rock" && rand === "scissors") || (app.playerChoise === "scissors" && rand === "paper") || (app.playerChoise === "paper") && (rand === "rock")) {
+            app.winDisplay();
+            app.result = "win";
+        }
+        else {
+            app.looseDisplay();
+            app.result = "loose";
+        }
+        return rand;
+    },
+
+    // Creation Pierre
+    createRock: function () {
+        app.computerScissors.style.display = "none"
+        app.computerPaper.style.display = "none"
+        app.computerRock.style.display = "block"
+    },
+
+    // Creation Feuille
+    createPaper: function () {
+        app.computerScissors.style.display = "none"
+        app.computerRock.style.display = "none"
+        app.computerPaper.style.display = "block"
+    },
+
+    // Creation Ciseaux
+    createScissors: function () {
+        app.computerRock.style.display = "none"
+        app.computerPaper.style.display = "none"
+        app.computerScissors.style.display = "block"
+    },
+
+    // Select Pierre
+    selectRock: function() {
+        if (app.sound === "ok"){
+        app.playerChoise = "rock";
+        app.musicStone.play()
+        app.computer();
+        app.backgroundRock()       
+        }
+    app.playerChoise = "rock";
+    app.computer();
+    app.backgroundRock()
+
+    },
+
+    // Select Feuille
+    selectPaper: function() {
+    if (app.sound === "ok"){
+        app.playerChoise = "paper";
+        app.musicPaper.play();
+        app.computer();
+        app.backgroundPaper()
     }
-    else if (rand === "paper") {
-        createPaper();
+    app.playerChoise = "paper";
+    app.computer();
+    app.backgroundPaper();
+    },
+
+    // Select Cisceaux
+    selectScissors: function() {
+    if (app.sound === "ok"){
+        app.playerChoise = "scissors";
+        app.musicScissors.play();
+        app.computer();
+        app.backgroundScissors();
     }
-    else if (rand === "scissors") {
-        createScissors();
-    }
+    app.playerChoise = "scissors";
+    app.computer();
+    app.backgroundScissors()
+    },
 
+    looseDisplay: function() {
+        if (app.sound === "ok"){
+            app.letsplay.style.display = "none";
+            app.equalityResult.style.display = "none";
+            app.looseResult.style.display = "block";
+            app.winResult.style.display = "none";
+            app.computerResult.style.backgroundColor = "greenyellow";
+        }
+        app.letsplay.style.display = "none";
+        app.equalityResult.style.display = "none";
+        app.looseResult.style.display = "block";
+        app.winResult.style.display = "none";
+        app.computerResult.style.backgroundColor = "greenyellow";    
+    },
+    
+    winDisplay: function() {
+    
+        if (app.sound === "ok"){
+            app.letsplay.style.display = "none";
+            app.equalityResult.style.display = "none";
+            app.looseResult.style.display = "none";
+            app.winResult.style.display = "block";
+            app.computerResult.style.backgroundColor = "red"; 
+        }
+        app.letsplay.style.display = "none";
+        app.equalityResult.style.display = "none";
+        app.looseResult.style.display = "none";
+        app.winResult.style.display = "block";
+        app.computerResult.style.backgroundColor = "red";  
+    
+    },
+    
+    equalityDisplay: function() {
+        if (app.sound === "ok"){
+            app.letsplay.style.display = "none";
+            app.equalityResult.style.display = "block";
+            app.looseResult.style.display = "none";
+            app.winResult.style.display = "none";
+            app.computerResult.style.backgroundColor = "blue";  
+        }
+        app.letsplay.style.display = "none";
+        app.equalityResult.style.display = "block";
+        app.looseResult.style.display = "none";
+        app.winResult.style.display = "none";
+        app.computerResult.style.backgroundColor = "blue";  
+    },
 
-    if (playerChoise === rand ) {
-        equalityDisplay();
-        result = "equality";
-    }
-    else if ((playerChoise === "rock" && rand === "scissors") || (playerChoise === "scissors" && rand === "paper") || (playerChoise === "paper") && (rand === "rock")) {
-        winDisplay();
-        result = "win";
-    }
-    else {
-        looseDisplay();
-        result = "loose";
-    }
-    return rand;
-}
+    // background color Pierre
+    backgroundRock: function() {
+        if (app.result === "win") {
+            app.eventRock.style.backgroundColor = "greenyellow";
 
-// Creation Pierre
-function createRock(){
-    computerScissors.style.display = "none"
-    computerPaper.style.display = "none"
-    computerRock.style.display = "block"
-}
+        }
+        else if (app.result === "loose") {
+           app.eventRock.style.backgroundColor = "red";
 
-// Creation Feuille
-function createPaper(){
-    computerScissors.style.display = "none"
-    computerRock.style.display = "none"
-    computerPaper.style.display = "block"
-}
+        }
+        else if (app.result === "equality") {
+            app.eventRock.style.backgroundColor = "blue";
 
-// Creation Ciseaux
-function createScissors(){
-    computerRock.style.display = "none"
-    computerPaper.style.display = "none"
-    computerScissors.style.display = "block"
-}
+        }
+    },
 
+    // background color feuille
+    backgroundPaper: function() {
+        if (app.result === "win") {
+            app.eventPaper.style.backgroundColor = "greenyellow";
+        }
+        else if (app.result === "loose") {
+            app.eventPaper.style.backgroundColor = "red";
+        }
+        else if (app.result === "equality") {
+            app.eventPaper.style.backgroundColor = "blue";
+        }
+    },
 
-function looseDisplay() {
-    if (sound === "ok"){
-        letsplay.style.display = "none";
-        equalityResult.style.display = "none";
-        looseResult.style.display = "block";
-        winResult.style.display = "none";
-        computerResult.style.backgroundColor = "greenyellow";
-        // musicLoose.play();
-    }
-    letsplay.style.display = "none";
-    equalityResult.style.display = "none";
-    looseResult.style.display = "block";
-    winResult.style.display = "none";
-    computerResult.style.backgroundColor = "greenyellow";    
-}
+    // background color Ciseaux
+    backgroundScissors: function() {
+        if (app.result === "win") {
+            app.eventScissors.style.backgroundColor = "greenyellow";
 
-function winDisplay() {
+        }
+        else if (app.result === "loose") {
+            app.eventScissors.style.backgroundColor = "red";
 
-    if (sound === "ok"){
-        // musicWin.play();
-        letsplay.style.display = "none";
-        equalityResult.style.display = "none";
-        looseResult.style.display = "none";
-        winResult.style.display = "block";
-        computerResult.style.backgroundColor = "red";  
-    }
-    letsplay.style.display = "none";
-    equalityResult.style.display = "none";
-    looseResult.style.display = "none";
-    winResult.style.display = "block";
-    computerResult.style.backgroundColor = "red";  
+        }
+        else if (app.result === "equality") {
+            app.eventScissors.style.backgroundColor = "blue";
 
-}
+        }
+    },
 
-function equalityDisplay() {
-    if (sound === "ok"){
-        // musicEquality.play();
-        letsplay.style.display = "none";
-        equalityResult.style.display = "block";
-        looseResult.style.display = "none";
-        winResult.style.display = "none";
-        computerResult.style.backgroundColor = "blue";  
-    }
-    letsplay.style.display = "none";
-    equalityResult.style.display = "block";
-    looseResult.style.display = "none";
-    winResult.style.display = "none";
-    computerResult.style.backgroundColor = "blue";  
-}
+    // Reset color
+    resetColor: function() {
+        app.eventScissors.style.backgroundColor = "";
+        app.eventPaper.style.backgroundColor = "";
+        app.eventRock.style.backgroundColor = "";
+    },
 
-// Display Sound
-function eventDisplaySound() {
-    soundOn.addEventListener('click', handleClickSoundOn);
-    soundOff.addEventListener('click', handleClickSoundOff);
+};
 
-}
-
-function handleClickSoundOn() {
-    if (sound === "ok") {
-        sound = "no";
-        iconNoSound();
-    } else if (sound != "ok") {
-    sound = "ok";
-    iconSound();  
-    }
-}    
-
-
-function handleClickSoundOff() {
-    if (sound === "ok") {
-        sound = "no";
-        iconNoSound();
-    } else if (sound != "ok") {
-    sound = "ok";
-    iconSound();       
-    }
-}
-
-// Affiche l'icone son activé et enlève l'icone son désactivé
-function iconSound() {
-    soundOff.style.display = "none";
-    soundOn.style.display = "block";    
-}
-
-// Affiche l'icone son désactivé et enlève l'icone son activé
-function iconNoSound() {
-    soundOn.style.display = "none";
-    soundOff.style.display = "block";
-    music.pause();
-    music.currentTime = 0;
-}
-
-// Evenement Moai
-function eventMoaiMusic() {
-    eventMoai.addEventListener('click', handleEventMoai);
-}
-
-function handleEventMoai() {
-    if (sound === "ok") {
-    music.play();
-    }
-
-}
-
-
-// background color Pierre
-function backgroundRock() {
-    if (result === "win") {
-        eventRock.style.backgroundColor = "greenyellow";
-
-    }
-    else if (result === "loose") {
-        eventRock.style.backgroundColor = "red";
-
-    }
-    else if (result === "equality") {
-        eventRock.style.backgroundColor = "blue";
-
-    }
-}
-
-// background color feuille
-function backgroundPaper() {
-    if (result === "win") {
-        eventPaper.style.backgroundColor = "greenyellow";
-
-    }
-    else if (result === "loose") {
-        eventPaper.style.backgroundColor = "red";
-
-    }
-    else if (result === "equality") {
-        eventPaper.style.backgroundColor = "blue";
-
-    }
-}
-
-// background color Ciseaux
-function backgroundScissors() {
-    if (result === "win") {
-        eventScissors.style.backgroundColor = "greenyellow";
-
-    }
-    else if (result === "loose") {
-        eventScissors.style.backgroundColor = "red";
-
-    }
-    else if (result === "equality") {
-        eventScissors.style.backgroundColor = "blue";
-
-    }
-}
-
-// Reset color
-function resetColor() {
-    eventScissors.style.backgroundColor = "";
-    eventPaper.style.backgroundColor = "";
-    eventRock.style.backgroundColor = "";
-}
-
-// Select Pierre
-function selectRock() {
-     if (sound === "ok"){
-        playerChoise = "rock";
-        musicStone.play()
-        computer();
-        backgroundRock()       
-    }
-    playerChoise = "rock";
-    computer();
-    backgroundRock()
-
-}
-
-// Select Feuille
-function selectPaper() {
-    if (sound === "ok"){
-        playerChoise = "paper";
-        musicPaper.play();
-        computer();
-        backgroundPaper()
-    }
-    playerChoise = "paper";
-    computer();
-    backgroundPaper()
-}
-
-// Select Cisceaux
-function selectScissors() {
-    if (sound === "ok"){
-        playerChoise = "scissors";
-        musicScissors.play();
-        computer();
-        backgroundScissors()
-    }
-    playerChoise = "scissors";
-    computer();
-    backgroundScissors()
-}
-
-// Enlève le bouton Start et fait apparaitre le plateau de jeux
-function startGame() {
-    const startButon = document.getElementById('startGame');
-    startButon.style.display = "none";
-    const openGame = document.getElementById('game');
-    openGame.style.display = "block";
-    eventMoaiMusic();
-}
-
-// Fonction d'évènement sur le choix du joueur
-function gamePlayer() {
-    eventRock.addEventListener('click', handleClickRock);
-    eventPaper.addEventListener('click', handleClickPaper);
-    eventScissors.addEventListener('click', handleClickScissors);
-}
-
-function handleClickRock() {
-    resetColor();
-    selectRock();
-}
-
-function handleClickPaper() {
-    resetColor();
-    selectPaper();
-}
-
-function handleClickScissors() {
-    resetColor();
-    selectScissors();
-}
-
-
-// Fonction d'évènement du popup qui demande si on souhaite le son
-function playWithSound() {
-    const eventWithSound = document.querySelector('.popup-sound__with');
-    const eventWithoutSound = document.querySelector('.popup-sound__without');
-    eventWithSound.addEventListener('click', handleClickWithSound);
-    eventWithoutSound.addEventListener('click', handleClickWithoutSound);
-}
-
-// Fonction qui est appelé au click si on souhaite le son
-function handleClickWithSound() {
-    sound = "ok";
-    startGameButon();
-    iconSound();
-}
-
-// Fonction qui est appelé au click si on ne souhaite pas le son
-function handleClickWithoutSound() {
-    sound = "no";
-    startGameButon();
-    iconNoSound();
-}
-
-// Fonction d'évènement sur le bouton Start
-function clickStart() {
-    const eventStart = document.getElementById('music');
-    eventStart.addEventListener('click', handleClickStart);
-}
-
-// Fonction qui est appelé au click du bouton start, Active ou non la musique
-function handleClickStart() {
-    if (sound === "ok"){
-        startGame();
-    }
-    startGame();    
-}
-
-// Fonction qui enlève la fenêtre "popup" qui demande si on souhaite le son et fait apparaitre le bouton Start
-function startGameButon () {
-    const closePopupSound = document.getElementById('popup-sound');
-    closePopupSound.style.display = "none";
-    const startButon = document.getElementById('startGame');
-    startButon.style.display = "block";
-}
-
-// Génère l'action de l'adversaire Pierre/Feuille/Ciseaux
-function randomPFC() {
-    let randGame = rockPaperScissors[(Math.random() * rockPaperScissors.length) |0];
-    return randGame;
-}
-
-
-eventDisplaySound();
-clickStart();
-playWithSound();
-gamePlayer();
+// Lance le jeux
+app.init();
