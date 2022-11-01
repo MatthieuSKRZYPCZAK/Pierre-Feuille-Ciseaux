@@ -1,13 +1,13 @@
 # Pierre-Feuille-Ciseaux
 
-<b><u>Projet personnel</u>:</b>
-Jeux Pierre Feuille Ciseaux effectué en fin de saison 02 de la formation O'clock Fullstack Javascript, Promo Moaï !
+<b><u>Personal project:</u>:</b>
+Stone Paper Scissors games made at the end of season 02 of the O'clock Fullstack Javascript training, Promo Moaï !
 
 <b><u>Link</u>:</b>
 <a href="https://matthieuskrzypczak.fr/shifumi/">https://matthieuskrzypczak.fr/shifumi/</a>
 
 
-# Technologies utilisées
+# Technologies used
 
 <ul>
     <li>HTML</li>
@@ -15,16 +15,16 @@ Jeux Pierre Feuille Ciseaux effectué en fin de saison 02 de la formation O'cloc
     <li>Javascript</li>
 </ul>
 
-# Ressources
+# Resources
 
 <ul>
-    <li>Images</li>
+    <li>Pictures</li>
         <ul>
-            <li>Logo Moai crée par <a href="https://github.com/karenbartaud">Karen</a></li>
-            <li>Titres - Template photoshop Freepik</li>
-            <li>Icones - Flaticon</li>
+            <li>Moai logo created by <a href="https://github.com/karenbartaud">Karen</a></li>
+            <li>Title - Template photoshop Freepik</li>
+            <li>Icons - Flaticon</li>
         </ul>
-    <li>Sons</li>
+    <li>Sounds</li>
         <ul>
             <li>Sound Effects - Pixabay</li>
         </ul>
