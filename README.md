@@ -1,7 +1,7 @@
-# Pierre-Feuille-Ciseaux
+# Rock-Paper-Scissors
 
 <b><u>Personal project:</u>:</b>
-Stone Paper Scissors games made at the end of season 02 of the O'clock Fullstack Javascript training, Promo Moaï !
+Rock Paper Scissors games made at the end of season 02 of the O'clock Fullstack Javascript training, Promo Moaï !
 
 <b><u>Link</u>:</b>
 <a href="https://matthieuskrzypczak.fr/shifumi/">https://matthieuskrzypczak.fr/shifumi/</a>
