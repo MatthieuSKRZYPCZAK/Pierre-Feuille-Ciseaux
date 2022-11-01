@@ -1,6 +1,6 @@
 # Rock-Paper-Scissors
 
-<b><u>Personal project:</u>:</b>
+<b><u>Personal project</u>:</b>
 Rock Paper Scissors games made at the end of season 02 of the O'clock Fullstack Javascript training, Promo Moaï !
 
 <b><u>Link</u>:</b>
